@@ -17,7 +17,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    downloader.cpp
+    downloader.cpp \
+    mytimer.cpp
 
 HEADERS += \
-    downloader.h
+    downloader.h \
+    mytimer.h

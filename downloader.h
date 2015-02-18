@@ -2,37 +2,40 @@
 #define DOWNLOADER_H
 
 #include <QObject>
-#include <QFile>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
 #include <QDateTime>
+#include <QFile>
 #include <QDebug>
-#include <QTimer>
+#include <QEventLoop>
 
 class Downloader : public QObject
 {
-
     Q_OBJECT
 public:
-    explicit Downloader(QObject *parent = 0, QString file_name = "fabio.mp4");
-    ~Downloader();
-
-    void setName(QString new_name);
+    explicit Downloader(QObject *parent = 0);
 
     void doDownload();
+    void checkFlag();
+    bool getStatus();
+    void resetFlag();
 
 signals:
 
 public slots:
     void replyFinished (QNetworkReply *reply);
+    void checkStatus(QNetworkReply *replay);
 
 private:
-    QNetworkAccessManager *manager;
-    QString name;
-    int status;
-    QDateTime data;
+   QNetworkAccessManager *manager;
+   QNetworkAccessManager *manager2;
+   QDateTime data;
+   QString name;
+   bool flag_ready;
+   bool status;
+
 
 };
 
